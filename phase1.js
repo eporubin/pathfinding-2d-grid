@@ -58,7 +58,7 @@ function crawl(matrix, distanceMatrix, start, end){
         for (let neighbour of neighboursList){
             const nextX = neighbour[0];
             const nextY = neighbour[1];
-
+            //ensures that the obstacles are not placed at the start and end points
             if( nextX >= 0 && nextX <10 && nextY >= 0 && nextY < 10 && !(nextX === start[0] && nextY === start[1]) ){
                 if(matrix[nextX][nextY] !== 1){
                     let d = distanceMatrix[currentPosition[0]][currentPosition[1]];
@@ -106,10 +106,11 @@ function findNeighbour(position){
     let neighbour = []
     let x = position[0]
     let y = position [1]
-    neighbour.push([x - 1, y - 1],[x - 1, y], [x - 1, y + 1], [x, y - 1], [x, y + 1], [x + 1, y - 1], [x + 1, y], [x + 1, y + 1])
+    neighbour.push([x - 1, y - 1],[x - 1, y], [x - 1, y + 1], 
+        [x, y - 1], [x, y + 1], [x + 1, y - 1], [x + 1, y], [x + 1, y + 1])
     return neighbour;
 }
-console.log("The initial matrix is");
+console.log("The initial matrix  with obstacles is");
 let readyMatrix = generateMatrix(N);
 let clearMatrix = generateMatrix(N, 0, start, end);
 

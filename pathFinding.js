@@ -15,12 +15,13 @@ function generateMatrix(size, nrObstacles, start, end) {
 
     for(let o = 0; o < nrObstacles; o++){
         let obstacle = generateRandomPosition(size);
-        if(matrix[obstacle[0]][obstacle[1]] == 0 && obstacle[0] !== start[0] && obstacle[1] !== start[1] && obstacle[0] !== end[0]  && obstacle[1] !== end[1] ){
+        //setting up the obstacles restrictions such that they 
+        //cant be placed in the start or end points
+        if(matrix[obstacle[0]][obstacle[1]] == 0 && obstacle[0] !== start[0] && obstacle[1] 
+            !== start[1] && obstacle[0] !== end[0]  && obstacle[1] !== end[1] ){
             matrix[obstacle[0]][obstacle[1]] = 1
         }
     }
-    
-
     return matrix
 }
 function generateRandomPosition(size){
@@ -112,7 +113,7 @@ function findNeighbour(position){
     neighbour.push([x - 1, y - 1],[x - 1, y], [x - 1, y + 1], [x, y - 1], [x, y + 1], [x + 1, y - 1], [x + 1, y], [x + 1, y + 1])
     return neighbour;
 }
-
+console.log("The initial matrix with obstacle is:")
 let readyMatrix = generateMatrix(N, nrObstacles, start, end);
 let clearMatrix = generateMatrix(N, 0, start, end);
 
