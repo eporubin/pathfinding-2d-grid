@@ -14,7 +14,7 @@ squares are inbound and do not contain an obstacle.
 
 You can use any language and ideally the output is to a command line.
 
-![]()image.png
+![For Exampe](image.png)
 
 ##### Phase 1: 
 > Implement a 10X10 grid that contains a starting point on (0,0), the delivery point on (9,9) and the following obstacles on locations (9,7) (8,7) (6,7) (6,8).
