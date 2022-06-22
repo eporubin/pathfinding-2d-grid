@@ -17,7 +17,7 @@ function generateMatrix(size, nrObstacles, start, end) {
 
     for(let o = 0; o < nrObstacles; o++){
         let obstacle = generateRandomPosition(size);
-        if(matrix[obstacle[0]][obstacle[1]] == 0 && obstacle !== start && obstacle !== end ){
+        if(matrix[obstacle[0]][obstacle[1]] == 0 && obstacle[0] !== start[0] && obstacle[1] !== start[1] && obstacle[0] !== end[0]  && obstacle[1] !== end[1] ){
             matrix[obstacle[0]][obstacle[1]] = 1
         }
     }
@@ -94,7 +94,7 @@ function crawl(matrix, distanceMatrix, start, end){
 
     if (finalDistance == 0) {
         // there is no path
-        return []
+        return "Unable to reach delivery point"
     }
     let it = end;
 
@@ -119,7 +119,7 @@ let readyMatrix = generateMatrix(N, nrObstacles, start, end);
 let clearMatrix = generateMatrix(N, 0, start, end);
 
 printMatrix(readyMatrix);
-
-let finalPath = crawl(readyMatrix, clearMatrix, start, end);
+let pathReverse = crawl(readyMatrix, clearMatrix, start, end);
+let finalPath = pathReverse.reverse();
 
 console.log(finalPath)
