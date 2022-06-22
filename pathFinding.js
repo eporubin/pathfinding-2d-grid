@@ -81,7 +81,6 @@ function crawl(matrix, distanceMatrix, start, end){
                 }
             }
         } 
-       
     }
 
     console.log("Distance matrix is ");
@@ -91,6 +90,7 @@ function crawl(matrix, distanceMatrix, start, end){
     printMatrix(theWayBack);
 
     const finalDistance = distanceMatrix[end[0]][end[1]];
+    console.log(`The minimum number of steps required to achieve the path is ${finalDistance}`);
 
     if (finalDistance == 0) {
         // there is no path
@@ -120,6 +120,7 @@ let clearMatrix = generateMatrix(N, 0, start, end);
 
 printMatrix(readyMatrix);
 let pathReverse = crawl(readyMatrix, clearMatrix, start, end);
+console.log("The shortest pathway has the goes through the following points:")
 let finalPath = pathReverse.reverse();
 
 console.log(finalPath)
