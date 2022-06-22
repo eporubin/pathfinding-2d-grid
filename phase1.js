@@ -1,10 +1,16 @@
-//phase 2 of the findingpath with randomly generated blocks
+
+
+
 const N = 10;
 const nrObstacles = 20;
 const start = [0, 0];
 const end = [9, 9];
+const obs1 = [9, 7];
+const obs2 = [8, 7];
+const obs3 = [6, 7];
+const obs4 = [6, 8];
 
-function generateMatrix(size, nrObstacles, start, end) {
+function generateMatrix(size) {
     let matrix = []
     for (let i = 0; i < size; i++){
         matrix.push([]);
@@ -12,23 +18,14 @@ function generateMatrix(size, nrObstacles, start, end) {
             matrix[i].push(0);
         }
     }
-
-    for(let o = 0; o < nrObstacles; o++){
-        let obstacle = generateRandomPosition(size);
-        if(matrix[obstacle[0]][obstacle[1]] == 0 && obstacle[0] !== start[0] && obstacle[1] !== start[1] && obstacle[0] !== end[0]  && obstacle[1] !== end[1] ){
-            matrix[obstacle[0]][obstacle[1]] = 1
-        }
-    }
-    
-
+    matrix[obs1[0]][obs1[1]] = 1;
+    matrix[obs2[0]][obs2[1]] = 1; 
+    matrix[obs3[0]][obs3[1]] = 1; 
+    matrix[obs4[0]][obs4[1]] = 1;  
     return matrix
 }
-function generateRandomPosition(size){
-    //the constrains for the generated numbers are 0 and the size of the grid(ex. 10)
-    let xPoint = Math.floor(Math.random() * size);
-    let yPoint = Math.floor(Math.random() * size);
-    return [xPoint, yPoint];
-}
+
+
 
 function printMatrix(matrix) {
 
@@ -112,13 +109,13 @@ function findNeighbour(position){
     neighbour.push([x - 1, y - 1],[x - 1, y], [x - 1, y + 1], [x, y - 1], [x, y + 1], [x + 1, y - 1], [x + 1, y], [x + 1, y + 1])
     return neighbour;
 }
-
-let readyMatrix = generateMatrix(N, nrObstacles, start, end);
+console.log("The initial matrix is");
+let readyMatrix = generateMatrix(N);
 let clearMatrix = generateMatrix(N, 0, start, end);
 
-printMatrix(readyMatrix);
-let pathReverse = crawl(readyMatrix, clearMatrix, start, end);
-console.log("The shortest pathway has the goes through the following points:")
-let finalPath = pathReverse.reverse();
+ printMatrix(readyMatrix);
+ let pathReverse = crawl(readyMatrix, clearMatrix, start, end);
+ console.log("The shortest pathway has the goes through the following points:")
+ let finalPath = pathReverse.reverse();
 
-console.log(finalPath)
+ console.log(finalPath)
